@@ -20,12 +20,12 @@ public class PracticeController {
     private final PracticeService service;
 
     @GetMapping("sphere/{sphere}")
-    ResponseEntity<List<PracticeEntity>> getSurveysBySphere(@PathVariable String sphere) {
+    ResponseEntity<List<PracticeEntity>> getPracticeBySphere(@PathVariable String sphere) {
         return ResponseEntity.ok(service.getPracticeByBySphere(sphere));
     }
 
     @GetMapping("sphere/{sphere}/{minScore}")
-    ResponseEntity<List<PracticeEntity>> getSurveysBySphere(@PathVariable String sphere, @PathVariable BigDecimal minScore) {
+    ResponseEntity<List<PracticeEntity>> getPracticeBySphereAndScore(@PathVariable String sphere, @PathVariable BigDecimal minScore) {
         return ResponseEntity.ok(service.getPracticeByBySphereAndScore(sphere, minScore));
     }
 

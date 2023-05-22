@@ -26,23 +26,23 @@ public class PracticeService {
 
 
     public List<PracticeEntity> getPracticeByBySphere(String sphere) {
-        log.info("getting surveys by sphere: {}", sphere);
+        log.info("getting practice by sphere: {}", sphere);
         return practiceRepository.findAllBySphereId(sphere)
                 .stream()
                 .collect(Collectors.collectingAndThen(Collectors.toList(), result -> {
                     if (result.isEmpty())
-                        throw new PracticeNotFoundException(HttpStatus.NOT_FOUND, "can't find survey by sphere: " + sphere);
+                        throw new PracticeNotFoundException(HttpStatus.NOT_FOUND, "can't find practice by sphere: " + sphere);
                     return result;
                 }));
     }
 
     public List<PracticeEntity> getPracticeByBySphereAndScore(String sphere, BigDecimal minScore) {
-        log.info("getting surveys by sphere: {}", sphere);
+        log.info("getting practice by sphere: {}", sphere);
         return practiceRepository.findAllBySphereIdAndMinScoreGreaterThan(sphere, minScore)
                 .stream()
                 .collect(Collectors.collectingAndThen(Collectors.toList(), result -> {
                     if (result.isEmpty())
-                        throw new PracticeNotFoundException(HttpStatus.NOT_FOUND, String.format("can't find survey by sphere: %s and score: %s", sphere, minScore));
+                        throw new PracticeNotFoundException(HttpStatus.NOT_FOUND, String.format("can't find practice by sphere: %s and score: %s", sphere, minScore));
                     return result;
                 }));
     }
@@ -67,7 +67,7 @@ public class PracticeService {
 
     @SneakyThrows
     private List<PracticeEntity> parseFile() {
-        log.info("parsing file with surveys");
+        log.info("parsing file with practice");
         var file = new ClassPathResource("practice.json").getFile();
         return objectMapper.readValue(file,
                 new TypeReference<>() {

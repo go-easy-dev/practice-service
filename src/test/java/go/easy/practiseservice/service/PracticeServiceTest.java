@@ -18,7 +18,7 @@ import java.util.Collections;
 import java.util.List;
 
 @ExtendWith(MockitoExtension.class)
-public class SurveyServiceTest {
+public class PracticeServiceTest {
 
     private final EasyRandom random = new EasyRandom();
     @Mock
@@ -54,7 +54,7 @@ public class SurveyServiceTest {
         // then:
         Assertions.assertThatThrownBy(() -> practiceService.getPracticeByBySphere("SPHERE_ID"))
                 .isInstanceOf(PracticeNotFoundException.class)
-                .hasMessage("404 NOT_FOUND \"can't find survey by sphere: SPHERE_ID\"");
+                .hasMessage("404 NOT_FOUND \"can't find practice by sphere: SPHERE_ID\"");
     }
 
     @Test
@@ -84,6 +84,6 @@ public class SurveyServiceTest {
         // then:
         Assertions.assertThatThrownBy(() -> practiceService.getPracticeByBySphereAndScore("sphere", BigDecimal.ONE))
                 .isInstanceOf(PracticeNotFoundException.class)
-                .hasMessage("404 NOT_FOUND \"can't find survey by sphere: sphere and score: 1\"");
+                .hasMessage("404 NOT_FOUND \"can't find practice by sphere: sphere and score: 1\"");
     }
 }
