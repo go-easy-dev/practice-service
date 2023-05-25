@@ -2,6 +2,7 @@ package go.easy.practiseservice.controller;
 
 import go.easy.practiseservice.dto.practice.PracticeEntity;
 import go.easy.practiseservice.service.PracticeService;
+import io.swagger.v3.oas.annotations.Operation;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -19,14 +20,16 @@ public class PracticeController {
 
     private final PracticeService service;
 
+    @Operation(summary = "Получить все практики по сфере")
     @GetMapping("sphere/{sphere}")
     ResponseEntity<List<PracticeEntity>> getPracticeBySphere(@PathVariable String sphere) {
         return ResponseEntity.ok(service.getPracticeByBySphere(sphere));
     }
 
+    @Operation(summary = "Получить все практики по сфере отвечающие скорингу")
     @GetMapping("sphere/{sphere}/{sphereScore}")
-    ResponseEntity<List<PracticeEntity>> getPracticeBySphereAndScore(@PathVariable String sphere, @PathVariable BigDecimal minScore) {
-        return ResponseEntity.ok(service.getPracticeByBySphereAndScore(sphere, minScore));
+    ResponseEntity<List<PracticeEntity>> getPracticeBySphereAndScore(@PathVariable String sphere, @PathVariable BigDecimal sphereScore) {
+        return ResponseEntity.ok(service.getPracticeByBySphereAndScore(sphere, sphereScore));
     }
 
 

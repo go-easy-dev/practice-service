@@ -9,6 +9,10 @@ spring:
       password: bdung
       username: mongoadmin
 
+springdoc:
+  swagger-ui:
+    path: /swagger-ui.html
+
 de:
   flapdoodle:
     mongodb:
