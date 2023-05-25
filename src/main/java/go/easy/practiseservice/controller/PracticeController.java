@@ -24,7 +24,7 @@ public class PracticeController {
         return ResponseEntity.ok(service.getPracticeByBySphere(sphere));
     }
 
-    @GetMapping("sphere/{sphere}/{minScore}")
+    @GetMapping("sphere/{sphere}/{sphereScore}")
     ResponseEntity<List<PracticeEntity>> getPracticeBySphereAndScore(@PathVariable String sphere, @PathVariable BigDecimal minScore) {
         return ResponseEntity.ok(service.getPracticeByBySphereAndScore(sphere, minScore));
     }

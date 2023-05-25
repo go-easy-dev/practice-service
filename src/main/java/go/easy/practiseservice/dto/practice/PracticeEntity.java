@@ -28,6 +28,8 @@ public class PracticeEntity {
 
     private BigDecimal minScore;
 
+    private BigDecimal maxScore;
+
     @Positive
     private long version;
 

@@ -21,7 +21,8 @@ class PracticeRepositoryTest {
                 .id("Practice_ID_1")
                 .version(1)
                 .sphereId("SPHERE_1")
-                .minScore(BigDecimal.valueOf(5))
+                .minScore(BigDecimal.valueOf(1))
+                .maxScore(BigDecimal.valueOf(4))
                 .build());
 
         practiceRepository.save(PracticeEntity.builder()
@@ -62,13 +63,13 @@ class PracticeRepositoryTest {
     @Test
     void should_find_by_sphere_and_score() {
         // when
-        var actual = practiceRepository.findAllBySphereIdAndMinScoreGreaterThan("SPHERE_2", BigDecimal.valueOf(6));
+        var actual = practiceRepository.findAllBySphereAndScore("SPHERE_1", BigDecimal.valueOf(4));
 
         // then
         Assertions.assertThat(actual)
                 .isNotEmpty()
-                .filteredOn(elt -> elt.getId().equals("Practice_ID_2"))
-                .filteredOn(elt -> elt.getMinScore().compareTo(BigDecimal.valueOf(6)) > 0)
+                .filteredOn(elt -> elt.getId().equals("Practice_ID_1"))
+                .filteredOn(elt -> elt.getMinScore().compareTo(BigDecimal.valueOf(1)) == 0)
                 .hasSize(1);
     }
 }

@@ -60,7 +60,7 @@ public class PracticeServiceTest {
     @Test
     void should_get_practice_by_sphere_and_score() {
         // given:
-        Mockito.when(practiceRepository.findAllBySphereIdAndMinScoreGreaterThan("SPHERE_ID", BigDecimal.ONE))
+        Mockito.when(practiceRepository.findAllBySphereAndScore("SPHERE_ID", BigDecimal.ONE))
                 .thenReturn(List.of(PracticeEntity.builder()
                         .id("ID")
                         .sphereId("SPHERE_ID")
@@ -78,7 +78,7 @@ public class PracticeServiceTest {
     @Test
     void should_throw_practice_by_sphere_and_score() {
         // given:
-        Mockito.when(practiceRepository.findAllBySphereIdAndMinScoreGreaterThan("sphere", BigDecimal.ONE))
+        Mockito.when(practiceRepository.findAllBySphereAndScore("sphere", BigDecimal.ONE))
                 .thenReturn(Collections.emptyList());
 
         // then:

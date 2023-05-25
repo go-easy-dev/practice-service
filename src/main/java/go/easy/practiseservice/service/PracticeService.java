@@ -36,13 +36,13 @@ public class PracticeService {
                 }));
     }
 
-    public List<PracticeEntity> getPracticeByBySphereAndScore(String sphere, BigDecimal minScore) {
+    public List<PracticeEntity> getPracticeByBySphereAndScore(String sphere, BigDecimal sphereScore) {
         log.info("getting practice by sphere: {}", sphere);
-        return practiceRepository.findAllBySphereIdAndMinScoreGreaterThan(sphere, minScore)
+        return practiceRepository.findAllBySphereAndScore(sphere, sphereScore)
                 .stream()
                 .collect(Collectors.collectingAndThen(Collectors.toList(), result -> {
                     if (result.isEmpty())
-                        throw new PracticeNotFoundException(HttpStatus.NOT_FOUND, String.format("can't find practice by sphere: %s and score: %s", sphere, minScore));
+                        throw new PracticeNotFoundException(HttpStatus.NOT_FOUND, String.format("can't find practice by sphere: %s and score: %s", sphere, sphereScore));
                     return result;
                 }));
     }
