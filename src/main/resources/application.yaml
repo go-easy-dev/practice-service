@@ -3,19 +3,13 @@ spring:
     name: practice-service
   data:
     mongodb:
-      database: practice-service
       host: localhost
       port: 27017
       password: bdung
       username: mongoadmin
+      authentication-database: admin
 
 springdoc:
   swagger-ui:
     path: /swagger-ui.html
-
-de:
-  flapdoodle:
-    mongodb:
-      embedded:
-        version: 6.0.5
 
