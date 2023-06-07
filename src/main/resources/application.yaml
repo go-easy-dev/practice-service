@@ -3,11 +3,11 @@ spring:
     name: practice-service
   data:
     mongodb:
-      host: localhost
-      port: 27017
-      password: bdung
-      username: mongoadmin
-      authentication-database: admin
+      host: rc1a-iaj8kf6jaomgk9lf.mdb.yandexcloud.net
+      port: 27018
+      password: goeasypractice
+      username: practice-service
+      authentication-database: practice-service
 
 springdoc:
   swagger-ui:
