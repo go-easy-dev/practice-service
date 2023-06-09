@@ -68,8 +68,8 @@ public class PracticeService {
     @SneakyThrows
     private List<PracticeEntity> parseFile() {
         log.info("parsing file with practice");
-        var file = new ClassPathResource("practice.json").getFile();
-        return objectMapper.readValue(file,
+        var inputStream = new ClassPathResource("practice.json").getInputStream();
+        return objectMapper.readValue(inputStream,
                 new TypeReference<>() {
                 });
     }
