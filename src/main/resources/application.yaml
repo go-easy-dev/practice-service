@@ -1,3 +1,4 @@
+
 spring:
   application:
     name: practice-service
@@ -7,9 +8,11 @@ spring:
       port: 27018
       password: goeasypractice
       username: practice-service
+      database: practice-service
       authentication-database: practice-service
 
 springdoc:
   swagger-ui:
     path: /swagger-ui.html
-
+server:
+  port: 8090
