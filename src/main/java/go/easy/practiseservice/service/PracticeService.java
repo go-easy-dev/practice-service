@@ -29,6 +29,7 @@ public class PracticeService {
         log.info("getting practice by sphere: {}", sphere);
         return practiceRepository.findAllBySphereId(sphere)
                 .stream()
+                .filter(practiceEntity -> !practiceEntity.isDeprecated())
                 .collect(Collectors.collectingAndThen(Collectors.toList(), result -> {
                     if (result.isEmpty())
                         throw new PracticeNotFoundException(HttpStatus.NOT_FOUND, "can't find practice by sphere: " + sphere);
@@ -40,6 +41,7 @@ public class PracticeService {
         log.info("getting practice by sphere: {}", sphere);
         return practiceRepository.findAllBySphereAndScore(sphere, sphereScore)
                 .stream()
+                .filter(practiceEntity -> !practiceEntity.isDeprecated())
                 .collect(Collectors.collectingAndThen(Collectors.toList(), result -> {
                     if (result.isEmpty())
                         throw new PracticeNotFoundException(HttpStatus.NOT_FOUND, String.format("can't find practice by sphere: %s and score: %s", sphere, sphereScore));

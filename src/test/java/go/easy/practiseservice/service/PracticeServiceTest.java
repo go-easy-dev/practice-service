@@ -5,7 +5,6 @@ import go.easy.practiseservice.dto.practice.PracticeEntity;
 import go.easy.practiseservice.exception.PracticeNotFoundException;
 import go.easy.practiseservice.repository.PracticeRepository;
 import org.assertj.core.api.Assertions;
-import org.jeasy.random.EasyRandom;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -14,13 +13,11 @@ import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.math.BigDecimal;
-import java.util.Collections;
 import java.util.List;
 
 @ExtendWith(MockitoExtension.class)
-public class PracticeServiceTest {
+class PracticeServiceTest {
 
-    private final EasyRandom random = new EasyRandom();
     @Mock
     ObjectMapper objectMapper;
     @Mock
@@ -49,7 +46,12 @@ public class PracticeServiceTest {
     @Test
     void should_throw_practice_by_sphere() {
         // given:
-        Mockito.when(practiceRepository.findAllBySphereId(Mockito.any())).thenReturn(Collections.emptyList());
+        Mockito.when(practiceRepository.findAllBySphereId(Mockito.any())).thenReturn(
+                List.of(PracticeEntity.builder()
+                        .id("ID")
+                        .sphereId("SPHERE_ID")
+                        .deprecated(true)
+                        .build()));
 
         // then:
         Assertions.assertThatThrownBy(() -> practiceService.getPracticeByBySphere("SPHERE_ID"))
@@ -79,7 +81,11 @@ public class PracticeServiceTest {
     void should_throw_practice_by_sphere_and_score() {
         // given:
         Mockito.when(practiceRepository.findAllBySphereAndScore("sphere", BigDecimal.ONE))
-                .thenReturn(Collections.emptyList());
+                .thenReturn(List.of(PracticeEntity.builder()
+                        .id("ID")
+                        .sphereId("SPHERE_ID")
+                        .deprecated(true)
+                        .build()));
 
         // then:
         Assertions.assertThatThrownBy(() -> practiceService.getPracticeByBySphereAndScore("sphere", BigDecimal.ONE))

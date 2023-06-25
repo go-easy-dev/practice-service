@@ -36,4 +36,6 @@ public class PracticeEntity {
     @NotBlank
     private String practiceDescription;
 
+    private boolean deprecated;
+
 }
