@@ -11,6 +11,10 @@ spring:
       database: practice-service
       authentication-database: practice-service
 
+server:
+  error:
+    include-message: always
+
 springdoc:
   swagger-ui:
     path: /swagger-ui.html
